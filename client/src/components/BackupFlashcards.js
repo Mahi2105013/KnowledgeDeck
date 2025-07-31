@@ -53,49 +53,38 @@ const BackupFlashcards = () => {
 
     return (
     <Fragment>
-    <div style = {{backgroundImage: `url('/flashcards.jpg')`, textAlign: 'center'}}>
-    <center><h1 class = "mt-5"> BACKUP TABLE </h1></center>
-    
-    <table class="table table-bordered mt-5 table-dark table-striped table-sm">
+    <div style={{
+      // backgroundImage: `url('/flashcards.jpg')`,
+      backgroundImage: `url('https://th.bing.com/th/id/R.de849f4c948af44d4a0524ea314f6041?rik=%2f8%2fb9Gr4iXG5gA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fd%2fb%2f0%2f572445.jpg&ehk=QWUD1TpQMYhugRwjTX1p039nNHjoKaefwdo4kQQsmvA%3d&risl=&pid=ImgRaw&r=0')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed',
+      padding: '20px',
+      color: '#fff',
+      minHeight: '100vh' // Ensures that the div is at least the height of the viewport
 
-    <thead>
-      <tr>
-        <th>WORD</th>
-        <th> MEANING / SIGNIFICANCE </th>
-        <th>CATEGORY</th>
-        <th> DIFFICULTY </th>
-        {/* <th> DELETED BY (USER_NAME) </th> */}
-        <th> PARTS OF SPEECH </th>
-        <th> EXAMPLE_SENTENCE </th>
-        <th> DATE OF DELETION </th>
-      </tr>
-    </thead>
-
-    <tbody>
-    {flashcards.map(todo => (
-        <tr key = {todo.WORD_ID}>
-            <td> {todo.WORD_STRING}  </td>
-            <td> {todo.MEANING}  </td>
-            <td> {todo.CATEGORY}  </td>
-            <td> {todo.DIFFICULTY === 'E' ? 'Easy' : 'Difficult'}  </td>
-            <td> {todo.PARTS_OF_SPEECH} </td>
-            <td> {todo.EXAMPLE_SENTENCE} </td>
-            {/* <td> {todo.USER_NAME} </td> */}
-            <td> {formatDateToDDMonYYYY(todo.DATE_OF_DELETION)} </td>
-            {/* <td> 
-            <button className="btn btn-warning"> Restore Word </button>
-            </td>
-            <td>                 
-                <button className="btn btn-danger">  Delete Word Permanently </button>
-                 </button>
-            </td> */}
-        </tr>
-    ))}
-
-    </tbody>
-    </table>
-    <div>.</div><div>.</div><div>.</div><div>.</div><div>.</div><div>.</div><div>.</div><div>.</div><div>.</div><div>.</div><div>.</div>
-    </div>
+    }}>
+                <center><h1 className="mt-5">BACKUP SECTION</h1></center>
+                <div className="row">
+                    {flashcards.map((todo) => (
+                        <div key={todo.WORD_ID} className="col-md-4">
+                            <div className="card mb-4" style={{ backgroundColor: 'white', color: '#343a40'}}>
+                                <div className="card-body">
+                                    <h3 className="card-title">{todo.WORD_STRING}</h3>
+                                    <p className="card-text"><strong>Meaning/Significance:</strong> {todo.MEANING}</p>
+                                    <p className="card-text"><strong>Category:</strong> {todo.CATEGORY}</p>
+                                    <p className="card-text"><strong>Difficulty:</strong> {todo.DIFFICULTY === 'E' ? 'Easy' : 'Difficult'}</p>
+                                    <p className="card-text"><strong>Parts of Speech:</strong> {todo.PARTS_OF_SPEECH}</p>
+                                    <p className="card-text"><strong>Example Sentence:</strong> {todo.EXAMPLE_SENTENCE}</p>
+                                    <p className="card-text"><strong>Date of Deletion:</strong> {formatDateToDDMonYYYY(todo.DATE_OF_DELETION)}</p>
+                                    <p className="card-text"><strong> <button className="btn btn-warning"> Restore Word </button> <button className="btn btn-danger"> Delete Word Permanently </button> </strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
     </Fragment>
     )
 }

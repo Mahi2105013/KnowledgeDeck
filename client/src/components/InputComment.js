@@ -63,18 +63,29 @@ const InputComment = (  ) => {
                 //type="button"
                 //className="btn btn-light"
                 style={{  
-                    borderRadius: '5px', padding: '10px', 
-                    marginBottom: '20px', marginLeft: '450px', 
-                    marginRight: '450px', backgroundColor: 'white'}}
-                data-toggle="modal"
-                data-target="#addNewWordModal"
+                    // borderRadius: '5px', padding: '10px', 
+                    // color: 'black',
+                    // marginBottom: '20px', marginLeft: '400px', 
+                    // marginRight: '400px', backgroundColor: 'white'
+                    border: '2px solid #ccc',
+                    borderRadius: '10px',
+                    padding: '20px',
+                    margin: '20px auto',
+                    color: 'black',
+                    width: '80%',
+                    backgroundColor: '#fff'
+                }}
+
+                
+                    data-toggle="modal"
+                    data-target="#addNewCommentModal"
             >
                 Click here to add a comment ...
             </div>
 
             <div
                 className="modal fade"
-                id="addNewWordModal"
+                id="addNewCommentModal"
                 tabIndex="-1"
                 role="dialog"
                 aria-labelledby="addNewWordModalLabel"

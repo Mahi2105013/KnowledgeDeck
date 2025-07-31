@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 const EditFlashcard = ({ todo }) => {
   //const [DESCRIPTIONN, setDESCRIPTIONN] = useState(todo.DESCRIPTIONN);
@@ -10,11 +10,7 @@ const EditFlashcard = ({ todo }) => {
   const [EXAMPLE_SENTENCE, setEXAMPLE_SENTENCE] = useState(todo.EXAMPLE_SENTENCE);
 
   const resetToEarlier = (todo) => {
-    //setWORD_STRING(todo.WORD_STRING);
-    //setMEANING(todo.MEANING);
-    //setCATEGORY(todo.CATEGRY);
-    //setDIFFICULTY(todo.DIFFICULTY);
-  };
+    };
 
   const handleDifficultyChange = (e) => {
     const value = e.target.value;
@@ -71,141 +67,150 @@ const EditFlashcard = ({ todo }) => {
     }
   };
 
+  useEffect(() => {
+    console.log("todo was changed")
+    setWORD_STRING(todo.WORD_STRING) // dummy code
+    setMEANING(todo.MEANING)
+    setDIFFICULTY(todo.DIFFICULTY)
+    setCATEGORY(todo.CATEGORY)
+    setPARTS_OF_SPEECH(todo.PARTS_OF_SPEECH)
+    setEXAMPLE_SENTENCE(todo.EXAMPLE_SENTENCE)
+  }, [todo]);
+
   return (
     <Fragment>
        <button
         type="button"
         class="btn btn-warning"
         data-toggle="modal"
-        data-target={`#id${todo.WORD_ID}`}
+        // data-target={`#id${todo.WORD_ID}`}
+        data-target={`#editflashcard${todo.WORD_ID}`}
       >
         Edit Details
       </button>
 
       <div
         class="modal fade"
-        id={`id${todo.WORD_ID}`}
-        //onClick={() => setDESCRIPTIONN(todo.DESCRIPTIONN)}
+        // id={`id${todo.WORD_ID}`}
+        id={`editflashcard${todo.WORD_ID}`}
         onClick={() => resetToEarlier(todo)}
       >
         <div class="modal-dialog modal-dialog-scrollable">
-          <div class="modal-content" style={{backgroundColor: 'rgba(40,167,69,1)'}}>
-            <div class="modal-header"> {/*the header*/}
-              <h4 class="modal-title">Edit Word / Phrase</h4>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                //onClick={() => setDESCRIPTIONN(todo.DESCRIPTIONN)}
-                onClick={() => resetToEarlier(todo)}
-              > CLOSE
-                &times;
-            </button>
-            </div>
+        <div className="modal-content" style={{ backgroundColor: '#f8f9fa', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.2)' }}>
+  <div className="modal-header" style={{ backgroundColor: '#28a745', borderTopLeftRadius: '8px', borderTopRightRadius: '8px', color: '#fff' }}>
+    <h4 className="modal-title">Edit Word / Phrase</h4>
+    <button
+      type="button"
+      className="close"
+      data-dismiss="modal"
+      style={{ color: '#fff', fontSize: '1.5rem' }}
+      onClick={() => resetToEarlier(todo)}
+    > 
+      &times;
+    </button>
+  </div>
 
-            <div class="modal-body"> {/*body of modal*/}
-            <div class="d-flex">
-            <label for="WORD_STRING"> {"WORD: "} </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Set new trade name"
-                value={WORD_STRING}
-                onChange={e => setWORD_STRING(e.target.value)} 
-                />
-              </div>
-            <p></p>
-            <div class="d-flex">
-            <label for="MEANING"> {"MEANING : "} </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Set new generic name"
-                value={MEANING}
-                onChange={e => {
-                    console.log(e.target.value)
-                    setMEANING(e.target.value)
-                }
-                }
-              />
-            </div>
-            <p></p>  
-            <div class="d-flex">
-            <label for="DIFFICULTY"> {"DIFFICULTY : "} </label>
-            <select
-            id="difficultySelector"
-            className="form-control"
-            value={DIFFICULTY === 'E' ? 'Easy' : DIFFICULTY === 'D' ? 'Difficult' : ''}
-            onChange={handleDifficultyChange}
-            >
-            <option value="Easy">Easy</option>
-            <option value="Difficult">Difficult</option>
-            </select>
-              </div>
-              <p></p>
-            <div class="d-flex">
-            <label for="CATEGORY"> {"CATEGORY : "} </label>
-                <select
-                id="categorySelector"
-                className="form-control"
-                value={CATEGORY}
-                onChange={handleCategoryChange}
-                >
-                <option value="NONE">None</option>
-                <option value="VOCABULARY">Vocabulary</option>
-                <option value="MATH FORMULAE">Math Formulae</option>
-                <option value="IMPORTANT DATES">Important Dates</option>
-                </select>
-            </div>
-                <p></p>
-            <div class="d-flex">
-            <label for="PARTS_OF_SPEECH"> {"PARTS_OF_SPEECH : "} </label>
-                <select
-                id="PARTS_OF_SPEECHSelector"
-                className="form-control"
-                value={PARTS_OF_SPEECH}
-                onChange={handlePARTS_OF_SPEECHChange}
-                >
-                <option value="" disabled>Select Parts of Speech</option>
-                <option value="None">None</option>
-                <option value="Noun">Noun</option>
-                <option value="Pronoun">Pronoun</option>
-                <option value="Adjective">Adjective</option>
-                <option value="Verb">Verb</option>
-                <option value="Adverb">Adverb</option>
-                <option value="Preposition">Preposition</option>
-                <option value="Conjunction">Conjunction</option>
-                </select>
-            </div>
-                <p></p>
-            <div class="d-flex">
-            <label for="EXAMPLE_SENTENCE"> {"EXAMPLE_SENTENCE : "} </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Set new example sentence"
-                value={EXAMPLE_SENTENCE}
-                onChange={e => {
-                    console.log(e.target.value)
-                    setEXAMPLE_SENTENCE(e.target.value)
-                }
-                }
-              />
-            </div>
-                <p></p>
-            </div>
+  <div className="modal-body" style={{ padding: '20px' }}>
+    <div className="form-group">
+      <label htmlFor="WORD_STRING" style={{ fontWeight: 'bold', color: '#343a40' }}>Word:</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Set new word or phrase"
+        value={WORD_STRING}
+        onChange={e => setWORD_STRING(e.target.value)}
+        style={{ marginBottom: '15px' }}
+      />
+    </div>
 
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-warning"
-                data-dismiss="modal"
-                onClick={e => updateWord(e)}
-              >
-                Edit
-              </button>
-            </div>
-          </div>
+    <div className="form-group">
+      <label htmlFor="MEANING" style={{ fontWeight: 'bold', color: '#343a40' }}>Meaning:</label>
+      <textarea
+        className="form-control"
+        placeholder="Set new meaning..."
+        value={MEANING}
+        onChange={e => setMEANING(e.target.value)}
+        rows="2"
+        style={{ marginBottom: '15px' }}
+      />
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="DIFFICULTY" style={{ fontWeight: 'bold', color: '#343a40' }}>Difficulty:</label>
+      <select
+        id="difficultySelector"
+        className="form-control"
+        value={DIFFICULTY === 'E' ? 'Easy' : DIFFICULTY === 'D' ? 'Difficult' : ''}
+        onChange={handleDifficultyChange}
+        style={{ marginBottom: '15px' }}
+      >
+        <option value="Easy">Easy</option>
+        <option value="Difficult">Difficult</option>
+      </select>
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="CATEGORY" style={{ fontWeight: 'bold', color: '#343a40' }}>Category:</label>
+      <select
+        id="categorySelector"
+        className="form-control"
+        value={CATEGORY}
+        onChange={handleCategoryChange}
+        style={{ marginBottom: '15px' }}
+      >
+        <option value="NONE">None</option>
+        <option value="VOCABULARY">Vocabulary</option>
+        <option value="MATH FORMULAE">Math Formulae</option>
+        <option value="IMPORTANT DATES">Important Dates</option>
+      </select>
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="PARTS_OF_SPEECH" style={{ fontWeight: 'bold', color: '#343a40' }}>Parts of Speech:</label>
+      <select
+        id="PARTS_OF_SPEECHSelector"
+        className="form-control"
+        value={PARTS_OF_SPEECH}
+        onChange={handlePARTS_OF_SPEECHChange}
+        style={{ marginBottom: '15px' }}
+      >
+        <option value="" disabled>Select Parts of Speech</option>
+        <option value="None">None</option>
+        <option value="Noun">Noun</option>
+        <option value="Pronoun">Pronoun</option>
+        <option value="Adjective">Adjective</option>
+        <option value="Verb">Verb</option>
+        <option value="Adverb">Adverb</option>
+        <option value="Preposition">Preposition</option>
+        <option value="Conjunction">Conjunction</option>
+      </select>
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="EXAMPLE_SENTENCE" style={{ fontWeight: 'bold', color: '#343a40' }}>Example Sentence:</label>
+      <textarea
+        className="form-control"
+        placeholder="Set new example sentence..."
+        value={EXAMPLE_SENTENCE}
+        onChange={e => setEXAMPLE_SENTENCE(e.target.value)}
+        rows="2"
+      />
+    </div>
+  </div>
+
+  <div className="modal-footer" style={{ justifyContent: 'center' }}>
+    <button
+      type="button"
+      className="btn btn-success"
+      data-dismiss="modal"
+      onClick={e => updateWord(e)}
+      style={{ width: '100%', padding: '10px', fontSize: '1.1rem' }}
+    >
+      Edit
+    </button>
+  </div>
+</div>
+
         </div>
       </div>
     </Fragment>
