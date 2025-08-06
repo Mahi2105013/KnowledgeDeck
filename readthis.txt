@@ -1,0 +1,13 @@
+Demonstration Link: https://youtu.be/3kwH9WNGIEk
+
+login with the following credentials:
+admin@gmail.com
+123
+
+or to login as user (non-admin):
+hasan@gmail.com or rishad@gmail.com
+123
+
+cd server && node index
+cd client && npm start
+[or, cd client && npm install && npm start]

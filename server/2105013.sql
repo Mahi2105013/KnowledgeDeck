@@ -85,6 +85,13 @@ CREATE TABLE COMMENT_UPVOTING (
 );
 
 
+Insert into HR.USERS (USER_ID,USER_NAME,USER_EMAIL,USER_PASSWORD) values (1,'admin','admin@gmail.com','123');
+Insert into HR.USERS (USER_ID,USER_NAME,USER_EMAIL,USER_PASSWORD) values (101,'Sakib','sakib@gmail.com','123');
+Insert into HR.USERS (USER_ID,USER_NAME,USER_EMAIL,USER_PASSWORD) values (102,'Rishad','rishad@gmail.com','123');
+Insert into HR.USERS (USER_ID,USER_NAME,USER_EMAIL,USER_PASSWORD) values (103,'Hasan','hasan@gmail.com','123');
+Insert into HR.USERS (USER_ID,USER_NAME,USER_EMAIL,USER_PASSWORD) values (104,'Ali','ali@gmail.com','123');
+Insert into HR.USERS (USER_ID,USER_NAME,USER_EMAIL,USER_PASSWORD) values (105,'Maryam','maryam@gmail.com','123');
+
 
 -- EASY WORDS INSERTION
 INSERT INTO FLASHCARDS (WORD_STRING, MEANING, DIFFICULTY, CATEGORY) VALUES
